@@ -6,6 +6,8 @@ class MemoryEntry {
   final List<String> tags;
   final Map<String, dynamic> context;
   final Map<String, dynamic>? aiGenerated;
+  final int? moodScore; // e.g. 1-5
+  final List<String>? activities;
 
   MemoryEntry({
     required this.id,
@@ -15,5 +17,7 @@ class MemoryEntry {
     required this.tags,
     required this.context,
     this.aiGenerated,
+    this.moodScore,
+    this.activities,
   });
 }
