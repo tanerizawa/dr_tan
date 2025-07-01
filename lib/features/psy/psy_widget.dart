@@ -7,17 +7,6 @@ import 'consultation/consultation_widget.dart';
 
 class PsyWidget extends StatelessWidget {
   const PsyWidget({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => PsyProvider(),
-      child: const _PsyView(),
-    );
-  }
-}
-
-class _PsyView extends StatelessWidget {
-  const _PsyView();
 
   @override
   Widget build(BuildContext context) {

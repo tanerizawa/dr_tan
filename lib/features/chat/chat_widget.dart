@@ -5,17 +5,6 @@ import 'chat_form.dart';
 
 class ChatWidget extends StatelessWidget {
   const ChatWidget({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => ChatProvider(),
-      child: const _ChatView(),
-    );
-  }
-}
-
-class _ChatView extends StatelessWidget {
-  const _ChatView();
 
   @override
   Widget build(BuildContext context) {
