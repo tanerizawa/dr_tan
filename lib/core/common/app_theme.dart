@@ -18,10 +18,6 @@ class AppTheme {
         ),
         visualDensity: const VisualDensity(horizontal: 2, vertical: 2),
         useMaterial3: true,
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedItemColor: _pastelIndigo,
-          unselectedItemColor: Colors.grey,
-        ),
       );
 
   static ThemeData get dark => ThemeData(
@@ -36,9 +32,5 @@ class AppTheme {
         ),
         visualDensity: const VisualDensity(horizontal: 2, vertical: 2),
         useMaterial3: true,
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedItemColor: _pastelBlue,
-          unselectedItemColor: Colors.grey,
-        ),
       );
 }
