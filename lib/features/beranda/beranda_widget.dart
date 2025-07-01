@@ -5,6 +5,7 @@ import 'beranda_provider.dart';
 import 'beranda_form.dart';
 import '../../core/common/pastel_empty_state.dart';
 import 'music_widget.dart';
+import 'article_quote_carousel.dart';
 
 class BerandaWidget extends StatelessWidget {
   const BerandaWidget({super.key});
@@ -15,6 +16,8 @@ class BerandaWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        const ArticleQuoteCarousel(),
+        const SizedBox(height: 12),
         const MusicWidget(),
         const SizedBox(height: 12),
         BerandaForm(onSubmit: provider.addNote),
