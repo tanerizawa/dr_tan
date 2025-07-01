@@ -14,48 +14,88 @@ class BerandaWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<BerandaProvider>(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return ListView(
       children: [
-        QuickJournalWidget(onSubmit: provider.addNote),
-        const SizedBox(height: 12),
-        const ArticleQuoteCarousel(),
-        const SizedBox(height: 12),
-        const MusicWidget(),
-        const SizedBox(height: 12),
-        BerandaForm(onSubmit: provider.addNote),
-        const SizedBox(height: 12),
-        const Text("Catatan Beranda:", style: TextStyle(fontWeight: FontWeight.bold)),
-        Expanded(
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
-            child: provider.notes.isEmpty
-                ? const PastelEmptyState(
-                    message: "Belum ada catatan.",
-                    icon: Icons.note_add,
-                  )
-                : ListView.builder(
-                    key: ValueKey(provider.notes.length),
-                    itemCount: provider.notes.length,
-                    itemBuilder: (ctx, i) => Card(
-                      margin: const EdgeInsets.symmetric(vertical: 4),
-                      child: ListTile(
-                        leading: const Icon(Icons.note),
-                        title: Text(provider.notes[i]),
-                      ),
-                    ),
-                  ),
+        Card(
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: QuickJournalWidget(onSubmit: provider.addNote),
           ),
         ),
-        const SizedBox(height: 12),
-        ElevatedButton.icon(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => const OtakKecilPage()),
-            );
-          },
-          icon: const Icon(Icons.memory),
-          label: const Text('Buka Otak Kecil'),
+        Card(
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          child: const ArticleQuoteCarousel(),
+        ),
+        Card(
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          child: const MusicWidget(),
+        ),
+        Card(
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                BerandaForm(onSubmit: provider.addNote),
+                const SizedBox(height: 12),
+                const Text(
+                  "Catatan Beranda:",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 8),
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 300),
+                  child: provider.notes.isEmpty
+                      ? const PastelEmptyState(
+                          message: "Belum ada catatan.",
+                          icon: Icons.note_add,
+                        )
+                      : ListView.builder(
+                          key: ValueKey(provider.notes.length),
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: provider.notes.length,
+                          itemBuilder: (ctx, i) => Dismissible(
+                            key: ValueKey(provider.notes[i]),
+                            direction: DismissDirection.endToStart,
+                            onDismissed: (_) => provider.removeNoteAt(i),
+                            background: Container(
+                              color: Colors.red,
+                              alignment: Alignment.centerRight,
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: const Icon(Icons.delete, color: Colors.white),
+                            ),
+                            child: Card(
+                              margin:
+                                  const EdgeInsets.symmetric(vertical: 4),
+                              child: ListTile(
+                                leading: const Icon(Icons.note),
+                                title: Text(provider.notes[i]),
+                              ),
+                            ),
+                          ),
+                        ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Card(
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: ElevatedButton.icon(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const OtakKecilPage()),
+                );
+              },
+              icon: const Icon(Icons.memory),
+              label: const Text('Buka Otak Kecil'),
+            ),
+          ),
         ),
       ],
     );
