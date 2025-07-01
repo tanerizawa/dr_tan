@@ -3,7 +3,6 @@ import 'features/beranda/beranda_widget.dart';
 import 'features/chat/chat_widget.dart';
 import 'features/growth/growth_widget.dart';
 import 'features/psy/psy_widget.dart';
-import 'features/otak_kecil/otak_kecil_widget.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -18,7 +17,6 @@ class _MainPageState extends State<MainPage> {
     ChatWidget(),
     GrowthWidget(),
     PsyWidget(),
-    OtakKecilWidget(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,6 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
           BottomNavigationBarItem(icon: Icon(Icons.show_chart), label: 'Growth'),
           BottomNavigationBarItem(icon: Icon(Icons.psychology), label: 'Psy'),
-          BottomNavigationBarItem(icon: Icon(Icons.memory), label: 'Otak Kecil'),
         ],
       ),
     );

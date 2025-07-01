@@ -7,10 +7,7 @@ class OtakKecilWidget extends StatelessWidget {
   const OtakKecilWidget({super.key});
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => OtakKecilProvider(),
-      child: const _OtakKecilView(),
-    );
+    return const _OtakKecilView();
   }
 }
 

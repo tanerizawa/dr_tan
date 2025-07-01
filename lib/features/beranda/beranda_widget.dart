@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../otak_kecil/otak_kecil_page.dart';
 import 'beranda_provider.dart';
 import 'beranda_form.dart';
 
@@ -27,7 +28,17 @@ class BerandaWidget extends StatelessWidget {
                     title: Text(provider.notes[i]),
                   ),
                 ),
-              ),
+          ),
+        ),
+        const SizedBox(height: 12),
+        ElevatedButton.icon(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const OtakKecilPage()),
+            );
+          },
+          icon: const Icon(Icons.memory),
+          label: const Text('Buka Otak Kecil'),
         ),
       ],
     );
