@@ -36,6 +36,7 @@ class _OtakKecilView extends StatelessWidget {
                 content: "Contoh memori pada \${now.toIso8601String()}",
                 tags: const ["contoh"],
                 context: const {},
+                moodScore: 3,
               ),
             );
           },
@@ -54,7 +55,8 @@ class _OtakKecilView extends StatelessWidget {
                     child: ListTile(
                       leading: const Icon(Icons.memory),
                       title: Text(m.content),
-                      subtitle: Text("Waktu: \${m.timestamp} | Tag: \${m.tags.join(', ')}"),
+                      subtitle: Text(
+                          "Waktu: \${m.timestamp} | Mood: \${m.moodScore ?? '-'} | Tag: \${m.tags.join(', ')}"),
                     ),
                   );
                 },

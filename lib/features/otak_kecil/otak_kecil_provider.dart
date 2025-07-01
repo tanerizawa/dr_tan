@@ -13,4 +13,19 @@ class OtakKecilProvider with ChangeNotifier {
     memories.clear();
     notifyListeners();
   }
+
+  List<MemoryEntry> filterByDate(DateTime start, DateTime end) {
+    return memories
+        .where((m) => !m.timestamp.isBefore(start) && !m.timestamp.isAfter(end))
+        .toList();
+  }
+
+  List<MemoryEntry> filterByMood(int min, int max) {
+    return memories
+        .where((m) =>
+            m.moodScore != null &&
+            m.moodScore! >= min &&
+            m.moodScore! <= max)
+        .toList();
+  }
 }
