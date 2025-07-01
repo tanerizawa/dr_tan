@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'features/otak_kecil/memory_entry.dart';
 import 'features/beranda/beranda_page.dart';
 import 'features/chat/chat_page.dart';
 import 'features/growth/growth_page.dart';
 import 'features/psy/psy_page.dart';
 import 'features/otak_kecil/otak_kecil_page.dart';
 import 'core/common/app_theme.dart';
+import 'features/growth/growth_page.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Inisialisasi Hive & register adapter
+  await Hive.initFlutter();
+  Hive.registerAdapter(MemoryEntryAdapter());
+  await Hive.openBox<MemoryEntry>('memories');
+
   runApp(const MyApp());
 }
 
