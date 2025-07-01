@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../core/ai/ai_service.dart';
+import '../../growth/growth_provider.dart';
 import '../psy_test_result_model.dart';
 import '../service/psy_test_repository.dart';
 
@@ -17,6 +21,8 @@ class _MBTITestWidgetState extends State<MBTITestWidget> {
   ];
   final List<int?> _answers = [null, null, null];
   String? _result;
+  String? _insight;
+  bool _loadingInsight = false;
 
   void _calculateResult() {
     if (_answers.any((a) => a == null)) return;
@@ -28,6 +34,7 @@ class _MBTITestWidgetState extends State<MBTITestWidget> {
     setState(() {
       _result = "Tipe MBTI Anda: $type";
     });
+    _fetchInsight(type);
     // Simpan hasil
     widget.repository?.add(
       PsyTestResult(
@@ -41,6 +48,20 @@ class _MBTITestWidgetState extends State<MBTITestWidget> {
         testedAt: DateTime.now(),
       ),
     );
+  }
+
+  Future<void> _fetchInsight(String type) async {
+    setState(() {
+      _loadingInsight = true;
+    });
+    final prompt =
+        'Saya mendapat hasil MBTI $type. Berikan saran langkah pengembangan diri.';
+    final res = await AiService().getInsight(prompt);
+    if (!mounted) return;
+    setState(() {
+      _insight = res;
+      _loadingInsight = false;
+    });
   }
 
   @override
@@ -79,8 +100,51 @@ class _MBTITestWidgetState extends State<MBTITestWidget> {
             if (_result != null)
               Padding(
                 padding: const EdgeInsets.only(top: 18.0),
-                child: Text(_result!, style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blue)),
+                child: Text(_result!,
+                    style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.blue)),
               ),
+            if (_loadingInsight)
+              const Padding(
+                padding: EdgeInsets.only(top: 12.0),
+                child: CircularProgressIndicator(),
+              )
+            else if (_insight != null)
+              _NextStepCard(
+                text: _insight!,
+                onSave: () {
+                  final growth = context.read<GrowthProvider?>();
+                  growth?.addProgress(_insight!);
+                },
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _NextStepCard extends StatelessWidget {
+  final String text;
+  final VoidCallback onSave;
+  const _NextStepCard({required this.text, required this.onSave});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.only(top: 12),
+      color: Colors.green[50],
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Next Step', style: TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            Text(text),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(onPressed: onSave, child: const Text('Save as Goal')),
+            )
           ],
         ),
       ),
