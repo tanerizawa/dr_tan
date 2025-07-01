@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/common/quick_add_dialog.dart';
+import '../../core/common/adaptive_greeting_banner.dart';
 import 'psy_widget.dart';
 import 'psy_provider.dart';
 
@@ -23,9 +24,14 @@ class _PsyView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Psy')),
-      body: const Padding(
-        padding: EdgeInsets.all(16),
-        child: PsyWidget(),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: const [
+            AdaptiveGreetingBanner(pageName: 'Psy'),
+            Expanded(child: PsyWidget()),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => showQuickAddDialog(
