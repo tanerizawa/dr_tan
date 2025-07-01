@@ -1,4 +1,5 @@
 class GrowthModel {
-  // TODO: Define data model for Growth
-  const GrowthModel();
+  final String progress;
+  final DateTime createdAt;
+  GrowthModel(this.progress, this.createdAt);
 }

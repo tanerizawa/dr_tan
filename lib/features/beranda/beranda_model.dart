@@ -1,4 +1,5 @@
 class BerandaModel {
-  // TODO: Define data model for Beranda
-  const BerandaModel();
+  final String note;
+  final DateTime createdAt;
+  BerandaModel(this.note, this.createdAt);
 }

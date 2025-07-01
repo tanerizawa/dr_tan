@@ -1,4 +1,4 @@
 class PsyState {
-  // TODO: Add properties for Psy state
+  // Tambahkan property jika ingin state lebih kompleks
   const PsyState();
 }

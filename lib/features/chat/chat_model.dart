@@ -1,4 +1,10 @@
 class ChatModel {
-  // TODO: Define data model for Chat
-  const ChatModel();
+  final String message;
+  final DateTime sentAt;
+  final bool isUser;
+  ChatModel({
+    required this.message,
+    required this.sentAt,
+    required this.isUser,
+  });
 }

@@ -1,23 +1,11 @@
-import 'package:hive/hive.dart';
-
-part 'memory_entry.g.dart';
-
-@HiveType(typeId: 0)
-class MemoryEntry extends HiveObject {
-  @HiveField(0)
-  String id;
-  @HiveField(1)
-  String type;
-  @HiveField(2)
-  DateTime timestamp;
-  @HiveField(3)
-  String content;
-  @HiveField(4)
-  List<String> tags;
-  @HiveField(5)
-  Map<String, dynamic> context;
-  @HiveField(6)
-  Map<String, dynamic>? aiGenerated;
+class MemoryEntry {
+  final String id;
+  final String type; // mood, journal, event, etc
+  final DateTime timestamp;
+  final String content;
+  final List<String> tags;
+  final Map<String, dynamic> context;
+  final Map<String, dynamic>? aiGenerated;
 
   MemoryEntry({
     required this.id,

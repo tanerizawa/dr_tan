@@ -1,4 +1,7 @@
 class OtakKecilModel {
-  // TODO: Define data model for OtakKecil
-  const OtakKecilModel();
+  final String id;
+  final String summary;
+  final DateTime createdAt;
+
+  OtakKecilModel(this.id, this.summary, this.createdAt);
 }

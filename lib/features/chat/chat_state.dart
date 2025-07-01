@@ -1,4 +1,4 @@
 class ChatState {
-  // TODO: Add properties for Chat state
+  // Tambahkan property jika ingin state lebih kompleks
   const ChatState();
 }

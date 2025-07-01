@@ -1,4 +1,4 @@
 class GrowthState {
-  // TODO: Add properties for Growth state
+  // Tambahkan property jika ingin state lebih kompleks
   const GrowthState();
 }

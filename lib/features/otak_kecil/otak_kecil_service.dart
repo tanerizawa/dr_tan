@@ -1,16 +1,11 @@
-import 'package:hive/hive.dart';
 import 'memory_entry.dart';
 
 class OtakKecilService {
-  static Box<MemoryEntry> get box => Hive.box<MemoryEntry>('memories');
+  final List<MemoryEntry> _memories = [];
 
-  static List<MemoryEntry> getAll() => box.values.toList();
+  List<MemoryEntry> fetchAll() => List.from(_memories);
 
-  static Future<void> add(MemoryEntry entry) => box.add(entry);
+  void add(MemoryEntry m) => _memories.insert(0, m);
 
-  static Future<void> delete(int key) => box.delete(key);
-
-  static Future<void> update(int key, MemoryEntry entry) => box.put(key, entry);
-
-  static MemoryEntry? getByKey(int key) => box.get(key);
+  void clear() => _memories.clear();
 }

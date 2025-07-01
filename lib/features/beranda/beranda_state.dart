@@ -1,4 +1,4 @@
 class BerandaState {
-  // TODO: Add properties for Beranda state
+  // Tambahkan property jika ingin state lebih kompleks
   const BerandaState();
 }

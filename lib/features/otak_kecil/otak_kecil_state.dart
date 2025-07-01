@@ -1,4 +1,4 @@
 class OtakKecilState {
-  // TODO: Add properties for OtakKecil state
+  // Tambahkan property jika ingin state lebih kompleks
   const OtakKecilState();
 }
