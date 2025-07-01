@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../core/common/adaptive_greeting_banner.dart';
 import 'beranda_widget.dart';
+import 'beranda_provider.dart';
 
 class BerandaPage extends StatelessWidget {
   const BerandaPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const _BerandaView();
+    return ChangeNotifierProvider(
+      create: (_) => BerandaProvider(),
+      child: const _BerandaView(),
+    );
   }
 }
 
