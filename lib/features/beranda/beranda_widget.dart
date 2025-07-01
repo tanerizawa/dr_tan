@@ -1,21 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'beranda_provider.dart';
 import 'beranda_form.dart';
-import 'package:provider/provider.dart';
 
 class BerandaWidget extends StatelessWidget {
   const BerandaWidget({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => BerandaProvider(),
-      child: const _BerandaView(),
-    );
-  }
-}
-
-class _BerandaView extends StatelessWidget {
-  const _BerandaView();
 
   @override
   Widget build(BuildContext context) {

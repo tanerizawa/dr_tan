@@ -7,17 +7,6 @@ import 'growth_model.dart';
 
 class GrowthWidget extends StatelessWidget {
   const GrowthWidget({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => GrowthProvider(repository: GrowthRepository()),
-      child: const _GrowthView(),
-    );
-  }
-}
-
-class _GrowthView extends StatelessWidget {
-  const _GrowthView();
 
   @override
   Widget build(BuildContext context) {
