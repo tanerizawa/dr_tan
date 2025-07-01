@@ -13,6 +13,7 @@ dependencies:
   provider: ^6.1.5
   just_audio: ^0.9.36
   carousel_slider: ^5.1.1
+  speech_to_text: ^7.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
