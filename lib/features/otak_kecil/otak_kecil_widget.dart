@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'otak_kecil_provider.dart';
 import 'memory_entry.dart';
+import '../../core/common/pastel_empty_state.dart';
 
 class OtakKecilWidget extends StatelessWidget {
   const OtakKecilWidget({super.key});
@@ -41,23 +42,30 @@ class _OtakKecilView extends StatelessWidget {
         const SizedBox(height: 16),
         const Text("Memori Tersimpan:", style: TextStyle(fontWeight: FontWeight.bold)),
         Expanded(
-          child: provider.memories.isEmpty
-            ? const Center(child: Text("Belum ada memori."))
-            : ListView.builder(
-                itemCount: provider.memories.length,
-                itemBuilder: (ctx, i) {
-                  final m = provider.memories[i];
-                  return Card(
-                    margin: const EdgeInsets.symmetric(vertical: 4),
-                    child: ListTile(
-                      leading: const Icon(Icons.memory),
-                      title: Text(m.content),
-                      subtitle: Text(
-                          "Waktu: \${m.timestamp} | Mood: \${m.moodScore ?? '-'} | Tag: \${m.tags.join(', ')}"),
-                    ),
-                  );
-                },
-              ),
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            child: provider.memories.isEmpty
+                ? const PastelEmptyState(
+                    message: "Belum ada memori.",
+                    icon: Icons.memory,
+                  )
+                : ListView.builder(
+                    key: ValueKey(provider.memories.length),
+                    itemCount: provider.memories.length,
+                    itemBuilder: (ctx, i) {
+                      final m = provider.memories[i];
+                      return Card(
+                        margin: const EdgeInsets.symmetric(vertical: 4),
+                        child: ListTile(
+                          leading: const Icon(Icons.memory),
+                          title: Text(m.content),
+                          subtitle: Text(
+                              "Waktu: \${m.timestamp} | Mood: \${m.moodScore ?? '-'} | Tag: \${m.tags.join(', ')}"),
+                        ),
+                      );
+                    },
+                  ),
+          ),
         ),
       ],
     );

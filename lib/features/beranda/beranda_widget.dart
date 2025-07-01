@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../otak_kecil/otak_kecil_page.dart';
 import 'beranda_provider.dart';
 import 'beranda_form.dart';
+import '../../core/common/pastel_empty_state.dart';
 
 class BerandaWidget extends StatelessWidget {
   const BerandaWidget({super.key});
@@ -17,17 +18,24 @@ class BerandaWidget extends StatelessWidget {
         const SizedBox(height: 12),
         const Text("Catatan Beranda:", style: TextStyle(fontWeight: FontWeight.bold)),
         Expanded(
-          child: provider.notes.isEmpty
-            ? const Center(child: Text("Belum ada catatan."))
-            : ListView.builder(
-                itemCount: provider.notes.length,
-                itemBuilder: (ctx, i) => Card(
-                  margin: const EdgeInsets.symmetric(vertical: 4),
-                  child: ListTile(
-                    leading: const Icon(Icons.note),
-                    title: Text(provider.notes[i]),
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            child: provider.notes.isEmpty
+                ? const PastelEmptyState(
+                    message: "Belum ada catatan.",
+                    icon: Icons.note_add,
+                  )
+                : ListView.builder(
+                    key: ValueKey(provider.notes.length),
+                    itemCount: provider.notes.length,
+                    itemBuilder: (ctx, i) => Card(
+                      margin: const EdgeInsets.symmetric(vertical: 4),
+                      child: ListTile(
+                        leading: const Icon(Icons.note),
+                        title: Text(provider.notes[i]),
+                      ),
+                    ),
                   ),
-                ),
           ),
         ),
         const SizedBox(height: 12),
