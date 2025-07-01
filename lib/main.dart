@@ -3,7 +3,8 @@ import 'features/beranda/beranda_page.dart';
 import 'features/chat/chat_page.dart';
 import 'features/growth/growth_page.dart';
 import 'features/psy/psy_page.dart';
-import 'features/otak_kecil/otak_kecil_page.dart';
+import 'features/otak_kecil/otak_kecil_provider.dart';
+import 'package:provider/provider.dart';
 import 'core/common/app_theme.dart';
 
 void main() {
@@ -15,10 +16,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Otak Kecil App',
-      theme: AppTheme.light,
-      home: const MainNav(),
+    return ChangeNotifierProvider(
+      create: (_) => OtakKecilProvider(),
+      child: MaterialApp(
+        title: 'Otak Kecil App',
+        theme: AppTheme.light,
+        home: const MainNav(),
+      ),
     );
   }
 }
@@ -36,7 +40,6 @@ class _MainNavState extends State<MainNav> {
     ChatPage(),
     GrowthPage(),
     PsyPage(),
-    OtakKecilPage(),
   ];
 
   @override
@@ -51,7 +54,6 @@ class _MainNavState extends State<MainNav> {
           BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chat"),
           BottomNavigationBarItem(icon: Icon(Icons.show_chart), label: "Growth"),
           BottomNavigationBarItem(icon: Icon(Icons.psychology), label: "Psy"),
-          BottomNavigationBarItem(icon: Icon(Icons.memory), label: "Otak Kecil"),
         ],
       ),
     );
