@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/common/quick_add_dialog.dart';
+import '../../core/common/adaptive_greeting_banner.dart';
 import 'chat_widget.dart';
 import 'chat_provider.dart';
 
@@ -23,9 +24,14 @@ class _ChatView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Chat')),
-      body: const Padding(
-        padding: EdgeInsets.all(16),
-        child: ChatWidget(),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: const [
+            AdaptiveGreetingBanner(pageName: 'Chat'),
+            Expanded(child: ChatWidget()),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => showQuickAddDialog(
