@@ -1,13 +1,9 @@
 name: dr_tan
-description: "Soul and Asistant"
-
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
+description: Soul and Asistant
+publish_to: none
 version: 1.0.0+1
-
 environment:
   sdk: ^3.8.1
-
 dependencies:
   flutter:
     sdk: flutter
@@ -15,7 +11,7 @@ dependencies:
   hive_flutter: ^1.1.0
   cupertino_icons: ^1.0.8
   provider: ^6.1.5
-
+  just_audio: ^0.9.36
 dev_dependencies:
   flutter_test:
     sdk: flutter

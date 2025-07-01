@@ -4,6 +4,7 @@ import '../otak_kecil/otak_kecil_page.dart';
 import 'beranda_provider.dart';
 import 'beranda_form.dart';
 import '../../core/common/pastel_empty_state.dart';
+import 'music_widget.dart';
 
 class BerandaWidget extends StatelessWidget {
   const BerandaWidget({super.key});
@@ -14,6 +15,8 @@ class BerandaWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        const MusicWidget(),
+        const SizedBox(height: 12),
         BerandaForm(onSubmit: provider.addNote),
         const SizedBox(height: 12),
         const Text("Catatan Beranda:", style: TextStyle(fontWeight: FontWeight.bold)),
