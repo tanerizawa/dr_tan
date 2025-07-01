@@ -12,6 +12,10 @@ class AppTheme {
           brightness: Brightness.light,
         ),
         scaffoldBackgroundColor: _lightBackground,
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: _pastelIndigo,
+          unselectedItemColor: Colors.grey,
+        ),
         visualDensity: const VisualDensity(horizontal: 2, vertical: 2),
         useMaterial3: true,
       );
@@ -22,6 +26,10 @@ class AppTheme {
           brightness: Brightness.dark,
         ),
         scaffoldBackgroundColor: _darkBackground,
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: _pastelBlue,
+          unselectedItemColor: Colors.grey,
+        ),
         visualDensity: const VisualDensity(horizontal: 2, vertical: 2),
         useMaterial3: true,
       );
